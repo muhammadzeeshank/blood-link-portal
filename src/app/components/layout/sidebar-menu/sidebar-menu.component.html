@@ -1,0 +1,74 @@
+<nav class="flex-1 min-h-0 overflow-y-auto p-4 space-y-1">
+  @for (item of navItems; track item.label) {
+    @if (item.children) {
+      <!-- Parent Item -->
+      <div>
+        <button
+          (click)="toggleMenu(item.label)"
+          [attr.aria-expanded]="isExpanded(item.label)"
+          class="w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg transition-colors group focus:outline-none"
+          [class.bg-slate-50]="(isExpanded(item.label) && !hasActiveChild(item))"
+          [class.dark:bg-slate-800]="(isExpanded(item.label) && !hasActiveChild(item))"
+          [class.text-slate-600]="!hasActiveChild(item)"
+          [class.dark:text-slate-400]="!hasActiveChild(item)"
+          [class.hover:bg-slate-50]="!hasActiveChild(item)"
+          [class.dark:hover:bg-slate-800]="!hasActiveChild(item)"
+          [class.hover:text-slate-900]="!hasActiveChild(item)"
+          [class.dark:hover:text-slate-200]="!hasActiveChild(item)"
+          
+          [class.bg-rose-50]="hasActiveChild(item)"
+          [class.dark:bg-rose-900/10]="hasActiveChild(item)"
+          [class.text-rose-600]="hasActiveChild(item)"
+          [class.dark:text-rose-400]="hasActiveChild(item)"
+        >
+          <div class="flex items-center gap-3">
+            <i [class]="item.icon + ' text-lg w-6 text-center transition-colors group-hover:text-rose-500 dark:group-hover:text-rose-400'"></i>
+            {{ item.label }}
+          </div>
+          <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300" [class.rotate-180]="isExpanded(item.label)"></i>
+        </button>
+
+        <!-- Children with CSS Grid Animation -->
+        <div 
+          class="grid transition-[grid-template-rows] duration-300 ease-in-out"
+          [class.grid-rows-[1fr]]="isExpanded(item.label)"
+          [class.grid-rows-[0fr]]="!isExpanded(item.label)"
+        >
+          <div class="overflow-hidden">
+            <div class="mt-1 space-y-1 relative">
+              <!-- Vertical Line for visual hierarchy -->
+              <div class="absolute left-7 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 z-20"></div>
+              
+              @for (child of item.children; track child.label) {
+                  <a
+                    [routerLink]="child.route"
+                    [queryParams]="child.queryParams"
+                    [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'exact', fragment: 'ignored', matrixParams: 'ignored' }"
+                    routerLinkActive="text-rose-600 dark:text-rose-400 font-semibold bg-rose-50 dark:bg-rose-900/10 border-r-4 border-rose-600 dark:border-rose-500"
+                    class="flex items-center gap-3 pl-11 pr-4 py-2.5 text-sm font-medium text-slate-500 dark:text-slate-500 rounded-lg transition-colors hover:text-slate-900 dark:hover:text-slate-300 relative z-10 group"
+                    (click)="onLinkClick()"
+                  >
+                    <i [class]="child.icon + ' text-sm w-5 text-center opacity-70 group-hover:opacity-100 transition-opacity'"></i>
+                    {{ child.label }}
+                  </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <!-- Single Item -->
+      <a 
+        [routerLink]="item.route" 
+        [queryParams]="item.queryParams"
+        [routerLinkActiveOptions]="{ paths: 'exact', queryParams: 'exact', fragment: 'ignored', matrixParams: 'ignored' }"
+        routerLinkActive="bg-rose-50 text-rose-600 dark:bg-rose-900/20 dark:text-rose-400 border-r-4 border-rose-600 dark:border-rose-500"
+        class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 dark:text-slate-400 rounded-lg transition-colors hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200 group"
+        (click)="onLinkClick()"
+      >
+        <i [class]="item.icon + ' text-lg w-6 text-center transition-colors group-hover:text-rose-500 dark:group-hover:text-rose-400'"></i>
+        {{ item.label }}
+      </a>
+    }
+  }
+</nav>
