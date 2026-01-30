@@ -28,7 +28,7 @@
           pButton
           severity="secondary"
           (click)="toggleSidebar()"
-          class="lg:!hidden p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none"
+          class="lg:hidden! p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none"
         >
           <i class="pi pi-bars text-xl"></i>
         </button>
@@ -38,7 +38,7 @@
           pButton
           severity="secondary"
           (click)="toggleDesktopSidebar()"
-          class="!hidden lg:!block p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none transition-colors"
+          class="hidden! lg:block! p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none transition-colors"
           [title]="isDesktopSidebarOpen() ? 'Collapse Sidebar' : 'Expand Sidebar'"
         >
           <i class="pi pi-bars text-xl"></i>
