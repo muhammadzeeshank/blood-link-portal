@@ -26,17 +26,17 @@ export class SidebarMenuComponent {
   expandedMenus = signal<string[]>(['Donation Management']);
 
   navItems: NavItem[] = [
-    { label: 'Dashboard', route: '/dashboard', icon: 'fa-solid fa-chart-pie' },
+    { label: 'Dashboard', route: '/dashboard', icon: 'pi pi-chart-pie' },
     {
       label: 'Donation Management',
-      icon: 'fa-solid fa-hand-holding-heart',
+      icon: 'pi pi-heart-fill',
       children: [
-        { label: 'Donor List', route: '/donors', icon: 'fa-solid fa-users' },
-        { label: 'Appointments', route: '/donors', queryParams: { tab: 'appointments' }, icon: 'fa-solid fa-calendar-check' },
-        { label: 'Eligibility Check', route: '/donors', queryParams: { tab: 'eligibility' }, icon: 'fa-solid fa-stethoscope' }
+        { label: 'Donor List', route: '/donors', icon: 'pi pi-users' },
+        // { label: 'Appointments', route: '/donors', queryParams: { tab: 'appointments' }, icon: 'pi pi-calendar-check' },
+        // { label: 'Eligibility Check', route: '/donors', queryParams: { tab: 'eligibility' }, icon: 'pi pi-activity' }
       ]
     },
-    { label: 'Campaign Assistant', route: '/assistant', icon: 'fa-solid fa-wand-magic-sparkles' },
+    { label: 'Campaign Assistant', route: '/assistant', icon: 'pi pi-sparkles' },
     {
       label: 'Analytics',
       icon: 'fa-solid fa-chart-simple',

@@ -14,6 +14,12 @@ export const appConfig: ApplicationConfig = {
         preset: Aura,
         options: {
           darkModeSelector: '.dark',
+          cssLayer: {
+            name: 'primeng',
+            // This order ensures Tailwind (which is unlayered by default) 
+            // or your custom layers come AFTER the primeng layer.
+            order: 'primeng, tailwind-utilities' 
+          }
         },
       },
     }),
