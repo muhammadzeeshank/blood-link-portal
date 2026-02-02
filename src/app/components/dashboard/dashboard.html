@@ -1,0 +1,146 @@
+<div class="space-y-8 animate-fade-in pb-10">
+  <!-- Hero Section -->
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-3xl font-extrabold text-slate-800 dark:text-white tracking-tight">
+        Dashboard
+      </h1>
+      <p class="text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-2">
+        <i class="fa-regular fa-calendar"></i>
+        {{ currentDate() | date: 'fullDate' }}
+      </p>
+    </div>
+    <div class="flex gap-3">
+      <!-- <app-button variant="secondary" icon="fa-solid fa-download">Export</app-button>
+      <app-button variant="primary" icon="fa-solid fa-plus">New Request</app-button> -->
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+    <!-- Stat 1: Total Donations -->
+    <div
+      class="relative bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden group"
+    >
+      <div
+        class="absolute top-0 right-0 w-24 h-24 bg-rose-50 dark:bg-rose-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+      ></div>
+      <div class="relative">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Donations</p>
+            <h3 class="text-3xl font-bold text-slate-800 dark:text-white mt-2">
+              {{ stats().bloodUnits }}
+            </h3>
+          </div>
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-400 to-rose-600 text-white flex items-center justify-center shadow-lg shadow-rose-200 dark:shadow-none"
+          >
+            <i class="pi pi-discord text-xl"></i>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center text-sm">
+          <span
+            class="text-emerald-500 font-semibold flex items-center gap-1 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 rounded-full"
+          >
+            <i class="pi pi-arrow-up-right text-xs"></i> 12%
+          </span>
+          <span class="text-slate-400 ml-2 text-xs">vs last month</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat 2: Requests -->
+    <div
+      class="relative bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden group"
+    >
+      <div
+        class="absolute top-0 right-0 w-24 h-24 bg-amber-50 dark:bg-amber-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+      ></div>
+      <div class="relative">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Pending Requests</p>
+            <h3 class="text-3xl font-bold text-slate-800 dark:text-white mt-2">
+              {{ stats().requestsPending }}
+            </h3>
+          </div>
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-white flex items-center justify-center shadow-lg shadow-amber-200 dark:shadow-none"
+          >
+            <i class="pi pi-clipboard text-xl"></i>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center text-sm">
+          <span
+            class="text-rose-500 font-semibold flex items-center gap-1 bg-rose-50 dark:bg-rose-900/20 px-2 py-0.5 rounded-full"
+          >
+            <i class="pi pi-exclamation-circle text-xs"></i> Urgent
+          </span>
+          <span class="text-slate-400 ml-2 text-xs">needs attention</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat 3: Active Donors -->
+    <div
+      class="relative bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden group"
+    >
+      <div
+        class="absolute top-0 right-0 w-24 h-24 bg-blue-50 dark:bg-blue-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+      ></div>
+      <div class="relative">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Active Donors</p>
+            <h3 class="text-3xl font-bold text-slate-800 dark:text-white mt-2">
+              {{ stats().totalDonors }}
+            </h3>
+          </div>
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-200 dark:shadow-none"
+          >
+            <i class="pi pi-users text-xl"></i>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center text-sm">
+          <span
+            class="text-emerald-500 font-semibold flex items-center gap-1 bg-emerald-50 dark:bg-emerald-900/20 px-2 py-0.5 rounded-full"
+          >
+            <i class="pi pi-plus text-xs"></i> 5
+          </span>
+          <span class="text-slate-400 ml-2 text-xs">new today</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat 4: Lives Saved -->
+    <div
+      class="relative bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden group"
+    >
+      <div
+        class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 dark:bg-emerald-500/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"
+      ></div>
+      <div class="relative">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Lives Saved</p>
+            <h3 class="text-3xl font-bold text-slate-800 dark:text-white mt-2">
+              {{ stats().livesSaved }}
+            </h3>
+          </div>
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-200 dark:shadow-none"
+          >
+            <i class="pi pi-heart text-xl"></i>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center text-sm">
+          <span class="text-slate-600 dark:text-slate-300 font-semibold flex items-center gap-1">
+            All time impact
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
