@@ -1,16 +1,16 @@
 import { Component, input, output } from '@angular/core';
-import { SidebarMenuComponent } from '../sidebar-menu/sidebar-menu.component';
+import { SidebarMenu } from '../sidebar-menu/sidebar-menu';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [SidebarMenuComponent],
-  templateUrl: './sidebar.component.html',
+  imports: [SidebarMenu],
+  templateUrl: './sidebar.html',
   host: {
     class: 'contents'
   }
 })
-export class SidebarComponent {
+export class Sidebar {
   isOpen = input.required<boolean>();
   isDesktopOpen = input.required<boolean>();
   closeMobile = output<void>();

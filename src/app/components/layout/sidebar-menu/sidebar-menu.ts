@@ -13,12 +13,12 @@ export interface NavItem {
   selector: 'app-sidebar-menu',
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './sidebar-menu.component.html',
+  templateUrl: './sidebar-menu.html',
   host: {
     class: 'contents'
   }
 })
-export class SidebarMenuComponent {
+export class SidebarMenu {
   private router = inject(Router);
   
   linkClicked = output<void>();
