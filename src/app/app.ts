@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ThemeService } from './services/theme.service';
-import { GlobalLoader } from './components/layout/global-loader/global-loader';
+import { ThemeService } from './core/layout/services/theme.service';
+import { GlobalLoader } from './core/layout/components/global-loader/global-loader';
 
 @Component({
   selector: 'app-root',

@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ThemeService } from '../../../services/theme.service';
+import { ThemeService } from '../../../../core/layout/services/theme.service';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from '../sidebar/sidebar';
 

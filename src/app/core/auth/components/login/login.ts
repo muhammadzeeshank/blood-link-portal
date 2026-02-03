@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
-import { ThemeService } from '../../../services/theme.service';
+import { AuthService } from '../../../../core/auth/services/auth.service';
+import { ThemeService } from '../../../../core/layout/services/theme.service';
 import { PasswordModule } from 'primeng/password';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
