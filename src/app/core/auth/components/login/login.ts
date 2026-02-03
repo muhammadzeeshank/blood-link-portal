@@ -10,12 +10,22 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { LoginRequest } from '../../models/auth-response.model';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, PasswordModule, InputGroupModule, InputGroupAddonModule, ButtonModule, InputTextModule, MessageModule, FloatLabelModule],
-  templateUrl: './login.html'
+  imports: [
+    ReactiveFormsModule,
+    PasswordModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    ButtonModule,
+    InputTextModule,
+    MessageModule,
+    FloatLabelModule,
+  ],
+  templateUrl: './login.html',
 })
 export class Login {
   private fb = inject(FormBuilder);
@@ -29,7 +39,7 @@ export class Login {
 
   loginForm = this.fb.group({
     email: ['admin@bloodlink.com', [Validators.required, Validators.email]],
-    password: ['password123', [Validators.required, Validators.minLength(6)]]
+    password: ['password123', [Validators.required, Validators.minLength(6)]],
   });
 
   constructor() {
@@ -38,7 +48,7 @@ export class Login {
   }
 
   togglePassword() {
-    this.showPassword.update(v => !v);
+    this.showPassword.update((v) => !v);
   }
 
   async onSubmit() {
@@ -53,14 +63,26 @@ export class Login {
     const { email, password } = this.loginForm.value;
 
     try {
-      const success = await this.authService.login(email!, password!);
-      
-      if (success) {
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.errorMessage.set('Invalid email or password. Please try again.');
-        this.isLoading.set(false);
-      }
+      let body: LoginRequest = { emailId: email!, password: password! };
+
+      console.log('Logging in with', body);
+      this.authService.login(body).subscribe({
+        next: (data) => {
+          console.log('Login successful:', data);
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          console.error('Login error:', error);
+          this.errorMessage.set('Invalid email or password. Please try again.');
+        },
+      });
+
+      // if (success) {
+      //   this.router.navigate(['/dashboard']);
+      // } else {
+      //   this.errorMessage.set('Invalid email or password. Please try again.');
+      //   this.isLoading.set(false);
+      // }
     } catch (error) {
       this.errorMessage.set('An unexpected error occurred.');
       this.isLoading.set(false);

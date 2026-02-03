@@ -6,7 +6,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isAuthenticated()) {
+  if (authService.isTokenValid()) {
+    console.log('User is authenticated, access granted to route:', state.url);
     return true;
   }
 
@@ -18,7 +19,8 @@ export const loginGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.isAuthenticated()) {
+  if (authService.isTokenValid()) {
+    console.log('User is already authenticated, redirecting to dashboard.');
     return router.createUrlTree(['/dashboard']);
   }
 

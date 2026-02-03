@@ -4,6 +4,8 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import BloodlinkPreset from './bloodlink-theme';
+import { loaderInterceptor } from './core/interceptors/loader-interceptor';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,12 +18,13 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.dark',
           cssLayer: {
             name: 'primeng',
-            // This order ensures Tailwind (which is unlayered by default) 
+            // This order ensures Tailwind (which is unlayered by default)
             // or your custom layers come AFTER the primeng layer.
-            order: 'theme, base, primeng, tailwind-utilities' 
-          }
+            order: 'theme, base, primeng, tailwind-utilities',
+          },
         },
       },
     }),
+    provideHttpClient(withInterceptors([loaderInterceptor])),
   ],
 };
