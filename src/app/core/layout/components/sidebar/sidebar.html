@@ -25,17 +25,28 @@
       class="shrink-0 p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900"
     >
       <div
-        class="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800"
+        class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800"
       >
-        <img
-          src="https://picsum.photos/40/40"
-          alt="Admin"
-          class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-slate-700 shadow-sm"
-        />
-        <div>
-          <p class="text-sm font-semibold text-slate-700 dark:text-slate-200">Dr. Alex Doe</p>
-          <p class="text-xs text-slate-500 dark:text-slate-400">Chief Administrator</p>
+        <div class="flex items-center gap-3 min-w-0">
+          <img
+            src="https://picsum.photos/40/40"
+            alt="Admin"
+            class="w-10 h-10 rounded-full object-cover border-2 border-white dark:border-slate-700 shadow-sm shrink-0"
+          />
+          <div class="min-w-0">
+            <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 truncate">
+              Dr. Alex Doe
+            </p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 truncate">Chief Administrator</p>
+          </div>
         </div>
+        <button
+          (click)="logout()"
+          class="text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 p-2 rounded-lg transition-colors"
+          title="Sign out"
+        >
+          <i class="pi pi-sign-out"></i>
+        </button>
       </div>
     </div>
   </div>
