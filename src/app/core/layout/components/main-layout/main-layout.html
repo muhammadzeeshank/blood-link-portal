@@ -28,20 +28,22 @@
           pButton
           severity="secondary"
           (click)="toggleSidebar()"
-          class="lg:hidden! p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none"
+          class="lg:hidden p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
         >
-          <i class="pi pi-bars text-xl"></i>
+          <i class="pi pi-bars text-lg"></i>
         </button>
 
         <!-- Desktop Toggle -->
         <button
           pButton
           severity="secondary"
+          [rounded]="true"
+          [text]="true"
           (click)="toggleDesktopSidebar()"
-          class="hidden! lg:block! p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none transition-colors"
+          class="hidden lg:flex p-2 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
           [title]="isDesktopSidebarOpen() ? 'Collapse Sidebar' : 'Expand Sidebar'"
         >
-          <i class="pi pi-bars text-xl"></i>
+          <i class="pi pi-bars text-lg"></i>
         </button>
       </div>
 
@@ -51,30 +53,38 @@
           pButton
           (click)="themeService.toggle()"
           severity="secondary"
+          [rounded]="true"
+          [text]="true"
           class="p-2 text-slate-400 hover:text-amber-500 dark:hover:text-yellow-300 transition-colors"
           [title]="themeService.isDarkMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
         >
           @if (themeService.isDarkMode()) {
-            <i class="pi pi-sun text-xl"></i>
+            <i class="pi pi-sun text-base"></i>
           } @else {
-            <i class="pi pi-moon text-xl"></i>
+            <i class="pi pi-moon text-base"></i>
           }
         </button>
 
         <button
           pButton
+          severity="secondary"
+          [rounded]="true"
+          [text]="true"
           class="p-2 text-slate-400 hover:text-rose-500 dark:hover:text-rose-400 transition-colors relative"
         >
-          <i class="pi pi-bell text-xl"></i>
+          <i class="pi pi-bell text-base"></i>
           <span
             class="absolute top-1 right-1 w-2.5 h-2.5 bg-rose-500 rounded-full border-2 border-white dark:border-slate-900"
           ></span>
         </button>
         <button
           pButton
+          severity="secondary"
+          [rounded]="true"
+          [text]="true"
           class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
         >
-          <i class="pi pi-cog text-xl"></i>
+          <i class="pi pi-cog text-base"></i>
         </button>
       </div>
     </header>

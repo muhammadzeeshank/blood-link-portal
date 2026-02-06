@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { ThemeService } from '../../../../core/layout/services/theme.service';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from '../sidebar/sidebar';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet, Sidebar],
+  imports: [RouterOutlet, Sidebar, ButtonModule],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.css',
 })
