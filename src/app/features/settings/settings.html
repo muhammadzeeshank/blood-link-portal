@@ -1,0 +1,260 @@
+<div class="space-y-6 animate-fade-in pb-10">
+  
+  <!-- Header -->
+  <div>
+    <h1 class="text-3xl font-bold text-slate-800 dark:text-white tracking-tight">Settings</h1>
+    <p class="text-slate-500 dark:text-slate-400 mt-1">Manage your account settings and preferences.</p>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-8">
+    
+    <!-- Sidebar Navigation for Settings -->
+    <div class="w-full lg:w-64 shrink-0 space-y-2">
+      <button 
+        (click)="setActiveTab('profile')"
+        class="w-full text-left px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center gap-3"
+        [class]="activeTab() === 'profile' ? 'bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'"
+      >
+        <i class="fa-regular fa-id-card w-5 text-center"></i> Profile
+      </button>
+      <button 
+        (click)="setActiveTab('notifications')"
+        class="w-full text-left px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center gap-3"
+        [class]="activeTab() === 'notifications' ? 'bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'"
+      >
+        <i class="fa-regular fa-bell w-5 text-center"></i> Notifications
+      </button>
+      <button 
+        (click)="setActiveTab('security')"
+        class="w-full text-left px-4 py-3 rounded-xl font-medium text-sm transition-all flex items-center gap-3"
+        [class]="activeTab() === 'security' ? 'bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'"
+      >
+        <i class="fa-solid fa-shield-halved w-5 text-center"></i> Security
+      </button>
+    </div>
+
+    <!-- Content Area -->
+    <div class="flex-1 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 p-6 md:p-8 min-h-[500px]">
+      
+      <!-- Profile Tab -->
+      @if (activeTab() === 'profile') {
+        <div class="space-y-8 animate-fade-in">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 dark:text-white">Public Profile</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">This information will be displayed publicly to other admins.</p>
+          </div>
+
+          <div class="flex items-center gap-6">
+            <div class="relative group cursor-pointer">
+              <img src="https://picsum.photos/120/120" class="w-24 h-24 rounded-full object-cover border-4 border-slate-50 dark:border-slate-800 shadow-sm" alt="Profile">
+              <div class="absolute inset-0 bg-black/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <i class="fa-solid fa-camera text-white"></i>
+              </div>
+            </div>
+            <div>
+              <app-button variant="secondary" icon="fa-solid fa-upload">Change Avatar</app-button>
+              <p class="text-xs text-slate-400 mt-2">JPG, GIF or PNG. Max size of 800K</p>
+            </div>
+          </div>
+
+          <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="space-y-6 max-w-2xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-1">
+                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>
+                <input 
+                  type="text" 
+                  formControlName="fullName"
+                  class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all text-sm text-slate-700 dark:text-slate-200"
+                >
+              </div>
+              <div class="space-y-1">
+                <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Phone</label>
+                <input 
+                  type="text" 
+                  formControlName="phone"
+                  class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all text-sm text-slate-700 dark:text-slate-200"
+                >
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Email Address</label>
+              <input 
+                type="email" 
+                formControlName="email"
+                class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all text-sm text-slate-700 dark:text-slate-200"
+              >
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Role</label>
+              <input 
+                type="text" 
+                formControlName="role"
+                class="w-full px-4 py-2.5 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-500 cursor-not-allowed"
+              >
+            </div>
+
+            <div class="pt-4 flex justify-end">
+              <app-button type="submit" [loading]="isSaving()" icon="fa-solid fa-check">Save Changes</app-button>
+            </div>
+          </form>
+        </div>
+      }
+
+      <!-- Notifications Tab -->
+      @if (activeTab() === 'notifications') {
+        <div class="space-y-8 animate-fade-in">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 dark:text-white">Notifications</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Choose how you want to be notified about important updates.</p>
+          </div>
+
+          <div class="space-y-6 max-w-2xl">
+            <!-- Group 1 -->
+            <div class="space-y-4">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-2">General Alerts</h3>
+              
+              <div class="flex items-center justify-between py-2">
+                <div>
+                  <p class="font-medium text-slate-700 dark:text-slate-200">Email Notifications</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Receive daily summaries and critical alerts via email.</p>
+                </div>
+                <button 
+                  (click)="toggleNotification('emailAlerts')"
+                  class="w-12 h-6 rounded-full transition-colors relative"
+                  [class]="notifications().emailAlerts ? 'bg-rose-600' : 'bg-slate-200 dark:bg-slate-700'"
+                >
+                  <div 
+                    class="w-4 h-4 bg-white rounded-full absolute top-1 transition-all"
+                    [class]="notifications().emailAlerts ? 'left-7' : 'left-1'"
+                  ></div>
+                </button>
+              </div>
+
+              <div class="flex items-center justify-between py-2">
+                <div>
+                  <p class="font-medium text-slate-700 dark:text-slate-200">SMS Notifications</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Get urgent alerts directly to your mobile phone.</p>
+                </div>
+                 <button 
+                  (click)="toggleNotification('smsAlerts')"
+                  class="w-12 h-6 rounded-full transition-colors relative"
+                  [class]="notifications().smsAlerts ? 'bg-rose-600' : 'bg-slate-200 dark:bg-slate-700'"
+                >
+                  <div 
+                    class="w-4 h-4 bg-white rounded-full absolute top-1 transition-all"
+                    [class]="notifications().smsAlerts ? 'left-7' : 'left-1'"
+                  ></div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Group 2 -->
+            <div class="space-y-4 pt-4">
+              <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-800 pb-2">System Events</h3>
+              
+              <div class="flex items-center justify-between py-2">
+                <div>
+                  <p class="font-medium text-slate-700 dark:text-slate-200">Low Stock Alerts</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Notify when blood type levels drop below 20%.</p>
+                </div>
+                 <button 
+                  (click)="toggleNotification('stockLowAlert')"
+                  class="w-12 h-6 rounded-full transition-colors relative"
+                  [class]="notifications().stockLowAlert ? 'bg-rose-600' : 'bg-slate-200 dark:bg-slate-700'"
+                >
+                  <div 
+                    class="w-4 h-4 bg-white rounded-full absolute top-1 transition-all"
+                    [class]="notifications().stockLowAlert ? 'left-7' : 'left-1'"
+                  ></div>
+                </button>
+              </div>
+
+               <div class="flex items-center justify-between py-2">
+                <div>
+                  <p class="font-medium text-slate-700 dark:text-slate-200">New Donor Registration</p>
+                  <p class="text-xs text-slate-500 dark:text-slate-400">Get notified for every new donor sign-up.</p>
+                </div>
+                 <button 
+                  (click)="toggleNotification('newDonorAlert')"
+                  class="w-12 h-6 rounded-full transition-colors relative"
+                  [class]="notifications().newDonorAlert ? 'bg-rose-600' : 'bg-slate-200 dark:bg-slate-700'"
+                >
+                  <div 
+                    class="w-4 h-4 bg-white rounded-full absolute top-1 transition-all"
+                    [class]="notifications().newDonorAlert ? 'left-7' : 'left-1'"
+                  ></div>
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+               <app-button variant="secondary">Reset to Defaults</app-button>
+            </div>
+          </div>
+        </div>
+      }
+
+      <!-- Security Tab -->
+      @if (activeTab() === 'security') {
+        <div class="space-y-8 animate-fade-in">
+          <div>
+            <h2 class="text-xl font-bold text-slate-800 dark:text-white">Security Settings</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400">Update your password and secure your account.</p>
+          </div>
+
+          <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()" class="space-y-6 max-w-md">
+            <div class="space-y-1">
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Current Password</label>
+              <input 
+                type="password" 
+                formControlName="currentPassword"
+                class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all text-sm text-slate-700 dark:text-slate-200"
+              >
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300">New Password</label>
+              <input 
+                type="password" 
+                formControlName="newPassword"
+                class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all text-sm text-slate-700 dark:text-slate-200"
+              >
+              <p class="text-xs text-slate-400 mt-1">Minimum 8 characters, include a number and symbol.</p>
+            </div>
+
+             <div class="space-y-1">
+              <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Confirm New Password</label>
+              <input 
+                type="password" 
+                formControlName="confirmPassword"
+                class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 transition-all text-sm text-slate-700 dark:text-slate-200"
+              >
+            </div>
+
+            <div class="pt-4">
+              <app-button type="submit" [loading]="isSaving()" [fullWidth]="true">Update Password</app-button>
+            </div>
+          </form>
+
+           <div class="pt-8 border-t border-slate-100 dark:border-slate-800">
+             <h3 class="font-bold text-slate-800 dark:text-white mb-4">Two-Factor Authentication</h3>
+             <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                <div class="flex items-center gap-3">
+                   <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                      <i class="fa-solid fa-shield-virus"></i>
+                   </div>
+                   <div>
+                      <p class="font-medium text-sm text-slate-800 dark:text-white">Authenticator App</p>
+                      <p class="text-xs text-slate-500 dark:text-slate-400">Secure your account with 2FA.</p>
+                   </div>
+                </div>
+                <app-button variant="secondary">Setup</app-button>
+             </div>
+           </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

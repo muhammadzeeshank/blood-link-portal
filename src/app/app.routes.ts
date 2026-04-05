@@ -26,6 +26,10 @@ export const routes: Routes = [
         path: 'donors',
         loadComponent: () => import('./features/donors/donors').then((m) => m.Donors),
       },
+            {
+        path: 'settings',
+        loadComponent: () => import('./features/settings/settings').then((m) => m.Settings),
+      },
     ],
   },
   { path: '**', redirectTo: 'auth/login' },

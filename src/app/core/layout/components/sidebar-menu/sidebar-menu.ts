@@ -36,16 +36,16 @@ export class SidebarMenu {
         // { label: 'Eligibility Check', route: '/donors', queryParams: { tab: 'eligibility' }, icon: 'pi pi-activity' }
       ]
     },
-    { label: 'Campaign Assistant', route: '/assistant', icon: 'pi pi-sparkles' },
-    {
-      label: 'Analytics',
-      icon: 'fa-solid fa-chart-simple',
-      children: [
-        { label: 'Stock Reports', route: '/dashboard', queryParams: { tab: 'stock' }, icon: 'fa-solid fa-boxes-stacked' },
-        { label: 'Performance', route: '/dashboard', queryParams: { tab: 'performance' }, icon: 'fa-solid fa-arrow-trend-up' }
-      ]
-    },
-    { label: 'Settings', route: '/dashboard', queryParams: { tab: 'settings' }, icon: 'pi pi-cog' },
+    // { label: 'Campaign Assistant', route: '/assistant', icon: 'pi pi-sparkles' },
+    // {
+    //   label: 'Analytics',
+    //   icon: 'fa-solid fa-chart-simple',
+    //   children: [
+    //     { label: 'Stock Reports', route: '/dashboard', queryParams: { tab: 'stock' }, icon: 'fa-solid fa-boxes-stacked' },
+    //     { label: 'Performance', route: '/dashboard', queryParams: { tab: 'performance' }, icon: 'fa-solid fa-arrow-trend-up' }
+    //   ]
+    // },
+    { label: 'Settings', route: '/settings', queryParams: { tab: 'settings' }, icon: 'pi pi-cog' },
   ];
 
   toggleMenu(label: string) {
