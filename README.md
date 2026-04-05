@@ -37,7 +37,7 @@ In emergencies, time is critical. Blood Link Portal aims to:
 - Background job processing for notifications
 
 ---
-
+[Live View](https://bloodlinkportal.netlify.app/)
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
 
 
