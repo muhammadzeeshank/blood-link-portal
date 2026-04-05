@@ -1,0 +1,27 @@
+    <ng-template #content>
+      @if (loading()) {
+        <i class="fa-solid fa-circle-notch fa-spin"></i>
+      } @else if (icon()) {
+        <i [class]="icon()"></i>
+      }
+      <ng-content></ng-content>
+    </ng-template>
+
+    @if (routerLink()) {
+      <a 
+        [routerLink]="routerLink()"
+        [class]="computedClasses()"
+      >
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+      </a>
+    } @else {
+      <button
+        pButton
+        [type]="type()"
+        [disabled]="disabled() || loading()"
+        [class]="computedClasses()"
+        (click)="onClick($event)"
+      >
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+      </button>
+    }

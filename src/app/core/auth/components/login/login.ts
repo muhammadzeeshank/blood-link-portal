@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { LoginRequest } from '../../models/auth-response.model';
+import { AppButton } from '../../../../shared/components/app-button/app-button';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ import { LoginRequest } from '../../models/auth-response.model';
     InputTextModule,
     MessageModule,
     FloatLabelModule,
+    AppButton
   ],
   templateUrl: './login.html',
 })

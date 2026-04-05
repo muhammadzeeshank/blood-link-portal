@@ -28,7 +28,7 @@ export class SidebarMenu {
   navItems: NavItem[] = [
     { label: 'Dashboard', route: '/dashboard', icon: 'pi pi-chart-pie' },
     {
-      label: 'Donation Management',
+      label: 'Manage Donors',
       icon: 'pi pi-heart-fill',
       children: [
         { label: 'Donor List', route: '/donors', icon: 'pi pi-users' },
@@ -45,7 +45,7 @@ export class SidebarMenu {
         { label: 'Performance', route: '/dashboard', queryParams: { tab: 'performance' }, icon: 'fa-solid fa-arrow-trend-up' }
       ]
     },
-    { label: 'Settings', route: '/dashboard', queryParams: { tab: 'settings' }, icon: 'fa-solid fa-gear' },
+    { label: 'Settings', route: '/dashboard', queryParams: { tab: 'settings' }, icon: 'pi pi-cog' },
   ];
 
   toggleMenu(label: string) {

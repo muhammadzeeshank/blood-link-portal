@@ -160,19 +160,24 @@
             >Remember me for 30 days</label
           >
         </div> -->
+        <div class="flex flex-col gap-4">
+          <app-button type="submit" variant="primary" [fullWidth]="true" [loading]="isLoading()">
+            @if (isLoading()) {
+              Signing in...
+            } @else {
+              Sign in
+            }
+          </app-button>
 
-        <button pButton type="submit" [disabled]="isLoading()" class="w-full">
-          @if (isLoading()) {
-            <i class="fa-solid fa-circle-notch fa-spin"></i> Signing in...
-          } @else {
-            Sign in
-          }
-        </button>
-
-        <button pButton severity="secondary" type="button" class="w-full">
-          <i class="fa-brands fa-google text-rose-500"></i>
-          Sign in with Google
-        </button>
+          <app-button
+            type="button"
+            variant="secondary"
+            [fullWidth]="true"
+            icon="fa-brands fa-google text-rose-500"
+          >
+            Sign in with Google
+          </app-button>
+        </div>
       </form>
 
       <!-- <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-8">
