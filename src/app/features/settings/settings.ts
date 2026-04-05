@@ -1,6 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-// import { LoaderService } from '../../services/loader.service';
+import { FormBuilder, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
+
+// PrimeNG Modules
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { AppButton } from '../../shared/components/app-button/app-button';
 
 type NotificationSettings = {
@@ -14,12 +19,19 @@ type NotificationSettings = {
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [ReactiveFormsModule, AppButton, ],
+  imports: [
+    ReactiveFormsModule, 
+    FormsModule,
+    ButtonModule, 
+    InputTextModule, 
+    PasswordModule, 
+    ToggleSwitchModule,
+    AppButton
+  ],
   templateUrl: './settings.html'
 })
 export class Settings {
   private fb: FormBuilder = inject(FormBuilder);
-  // private loaderService = inject(LoaderService);
 
   activeTab = signal<'profile' | 'notifications' | 'security'>('profile');
   isSaving = signal(false);
@@ -39,7 +51,7 @@ export class Settings {
     confirmPassword: ['', Validators.required]
   });
 
-  // Notifications State (Mock)
+  // Notifications State
   notifications = signal<NotificationSettings>({
     emailAlerts: true,
     smsAlerts: false,
@@ -60,26 +72,15 @@ export class Settings {
     if (this.profileForm.invalid) return;
     
     this.isSaving.set(true);
-    // this.loaderService.show();
-    
-    // Simulate API
-    await new Promise(r => setTimeout(r, 1000));
-    
-    // this.loaderService.hide();
+    await new Promise(r => setTimeout(r, 1000)); // Simulate API
     this.isSaving.set(false);
-    // In a real app, show a toast here
   }
 
   async updatePassword() {
     if (this.passwordForm.invalid) return;
 
     this.isSaving.set(true);
-    // this.loaderService.show();
-
-    // Simulate API
-    await new Promise(r => setTimeout(r, 1500));
-
-    // this.loaderService.hide();
+    await new Promise(r => setTimeout(r, 1500)); // Simulate API
     this.isSaving.set(false);
     this.passwordForm.reset();
   }

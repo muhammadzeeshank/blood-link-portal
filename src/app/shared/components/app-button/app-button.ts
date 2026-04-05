@@ -1,10 +1,11 @@
 import { NgTemplateOutlet } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Button } from 'primeng/button';
 
 @Component({
   selector: 'app-button',
-  imports: [RouterLink, NgTemplateOutlet],
+  imports: [RouterLink, NgTemplateOutlet, Button],
   templateUrl: './app-button.html',
   styleUrl: './app-button.css',
 })
@@ -16,6 +17,7 @@ export class AppButton {
   disabled = input(false);
   loading = input(false);
   fullWidth = input(false);
+  size = input<'small' | 'large'>('large');
 
   click = output<Event>();
 
@@ -35,7 +37,12 @@ export class AppButton {
     const variantClasses = this.variant() === 'primary' ? primary : secondary;
     const widthClass = this.fullWidth() ? 'w-full' : '';
 
-    return `${base} ${variantClasses} ${widthClass}`;
+    const sizeMap = {
+      small: 'p-button-sm',
+      large: 'p-button-lg',
+    };
+
+    return `${base} ${variantClasses} ${widthClass} ${sizeMap[this.size()]}`;
   }
 
   onClick(event: Event) {
